@@ -1,0 +1,1 @@
+Copie para esta pasta os arquivos lumie-logo-t.png e lumie_simbolo_circular.png usados pelo HTML da aplicação.

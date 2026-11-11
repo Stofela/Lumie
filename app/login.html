@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Lumiê</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo"><img src="lumie-logo-t.png" alt="Lumiê - Estudo, Foco e Equilíbrio"></a>
+        <div class="menu">
+            <a href="index.html" class="menu-inicio">Início</a>
+            <a href="sobre.html" class="menu-sobre">Sobre</a>
+            <a href="login.html" class="menu-login">Login</a>
+        </div>
+    </nav>
+</header>
+<main class="login-page">
+    <div class="login-background"><img src="lumie_simbolo_circular.png" alt=""></div>
+    <section class="login-container">
+        <div class="login-card">
+            <div id="area-login">
+                <h1>Entre no Lumiê</h1>
+                <p class="login-subtitulo">Acesse seu espaço de estudo e acompanhamento.</p>
+                <label for="email-login">E-mail</label>
+                <input type="email" id="email-login" placeholder="Digite seu e-mail" autocomplete="email">
+                <label for="senha-login">Senha</label>
+                <input type="password" id="senha-login" placeholder="Digite sua senha" autocomplete="current-password">
+                <button type="button" id="botao-login">Entrar</button>
+                <a href="#" class="esqueci-senha" aria-label="Recuperação de senha ainda não disponível">Esqueci minha senha</a>
+                <div class="linha-login"><span></span><p>ou</p><span></span></div>
+                <p class="login-cadastro">Ainda não possui uma conta?</p>
+                <button type="button" id="botao-mostrar-cadastro">Criar uma conta</button>
+            </div>
+            <div id="area-cadastro" style="display:none">
+                <h1>Crie sua conta</h1>
+                <p class="login-subtitulo">Faça parte do Lumiê e comece sua jornada.</p>
+                <label for="nome-cadastro">Nome</label>
+                <input type="text" id="nome-cadastro" placeholder="Digite seu nome" autocomplete="name">
+                <label for="email-cadastro">E-mail</label>
+                <input type="email" id="email-cadastro" placeholder="Digite seu e-mail" autocomplete="email">
+                <label for="senha-cadastro">Senha</label>
+                <input type="password" id="senha-cadastro" placeholder="Crie uma senha" autocomplete="new-password">
+                <label for="confirmar-senha">Confirmar senha</label>
+                <input type="password" id="confirmar-senha" placeholder="Digite a senha novamente" autocomplete="new-password">
+                <button type="button" id="botao-criar-conta">Criar conta</button>
+                <p class="login-cadastro">Já possui uma conta?</p>
+                <button type="button" id="botao-voltar-login">Entrar</button>
+            </div>
+            <p id="mensagem-login" role="status" aria-live="polite"></p>
+        </div>
+    </section>
+</main>
+<footer><p>Lumiê · Estudo, foco e equilíbrio.</p><span>Feito para estudantes, com carinho.</span></footer>
+<script type="module" src="firebase.js"></script>
+<script>
+const areaLogin = document.getElementById("area-login");
+const areaCadastro = document.getElementById("area-cadastro");
+document.getElementById("botao-mostrar-cadastro").addEventListener("click", () => {
+    areaLogin.style.display = "none";
+    areaCadastro.style.display = "block";
+});
+document.getElementById("botao-voltar-login").addEventListener("click", () => {
+    areaCadastro.style.display = "none";
+    areaLogin.style.display = "block";
+});
+</script>
+</body>
+</html>
