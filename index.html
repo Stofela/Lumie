@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumiê – Plataforma de estudo em missões</title>
+<meta name="description" content="Lumiê é uma plataforma web que ajuda estudantes de graduação a estudar com foco, dividindo tarefas grandes em missões pequenas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noite:#21113f; --noite2:#2d1856; --violeta:#5b3fb5; --lilas:#d9ccff;
+  --lua:#f6ecd9; --fundo:#f7f5fc; --texto:#241a3a; --suave:#5d5675; --linha:#ddd6ee;
+  --serif:'Lora',Georgia,serif; --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--fundo:#17102b;--texto:#ece8f7;--suave:#b3abc9;--linha:#352a57;--violeta:#a893f0}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{margin:0;font:400 1.0625rem/1.65 var(--sans);color:var(--texto);background:var(--fundo)}
+a{color:var(--violeta)}
+:focus-visible{outline:3px solid #f0b95a;outline-offset:3px}
+.skip{position:absolute;left:-999px}.skip:focus{left:1rem;top:1rem;background:#fff;color:#000;padding:.5rem 1rem;z-index:99}
+header.nav{position:sticky;top:0;z-index:10;background:var(--noite);padding:.75rem 1.25rem;display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap}
+.nav b{font:600 1.35rem var(--serif);color:var(--lua);margin-right:auto}
+.nav a{color:var(--lilas);text-decoration:none;font-size:.95rem}
+.nav a:hover{color:#fff;text-decoration:underline}
+.hero{background:radial-gradient(circle at 85% 30%,#4a2f8f 0,transparent 45%),linear-gradient(160deg,var(--noite),var(--noite2));color:#fff;padding:5rem 1.25rem 4.5rem;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:max(2rem,8vw);top:3rem;width:min(30vw,260px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 70% 50%,transparent 58%,var(--lua) 60%);transform:rotate(-20deg);opacity:.9;box-shadow:0 0 90px rgba(246,236,217,.25)}
+.wrap{max-width:62rem;margin:0 auto}
+.hero h1{font:600 clamp(4rem,12vw,7.5rem)/1 var(--serif);margin:0;color:var(--lua);letter-spacing:-.02em}
+.hero .lema{font:500 1.5rem/1.35 var(--serif);margin:.5rem 0 1.25rem;max-width:24ch}
+.hero p{max-width:40rem;color:var(--lilas)}
+.meta{font-size:.95rem;margin-top:1.5rem}
+.btns{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.75rem}
+.btn{display:inline-block;padding:.7rem 1.25rem;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid var(--lua);color:var(--lua)}
+.btn.prim{background:var(--lua);color:var(--noite)}
+.btn:hover{filter:brightness(1.1)}
+section{padding:4rem 1.25rem}
+section:nth-of-type(even){background:rgba(91,63,181,.06)}
+h2{font:600 clamp(1.75rem,4vw,2.5rem)/1.2 var(--serif);margin:0 0 1.25rem}
+h3{font-size:1.1rem;margin:1.5rem 0 .4rem}
+.col{max-width:44rem}
+.suave{color:var(--suave)}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));margin-top:1.5rem}
+.item{border-left:4px solid var(--violeta);padding:.25rem 0 .25rem 1rem}
+.item h3{margin:0 0 .25rem}
+.item p{margin:0}
+.dados{display:flex;gap:2.5rem;flex-wrap:wrap;margin:1.5rem 0}
+.dados div{max-width:12rem}
+.dados strong{display:block;font:600 2.4rem/1 var(--serif);color:var(--violeta)}
+.tag{display:inline-block;font-size:.8rem;font-weight:700;padding:.15rem .65rem;border-radius:999px;margin-left:.4rem;vertical-align:middle}
+.t-dev{background:#fde7b0;color:#4d3500}.t-plan{background:#e3defa;color:#2f1f6b}.t-ok{background:#c9eed7;color:#0f4122}
+.fluxo{counter-reset:p;list-style:none;padding:0;display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr))}
+.fluxo li{counter-increment:p;border:1px solid var(--linha);border-radius:12px;padding:1rem}
+.fluxo li::before{content:counter(p);display:block;font:600 1.6rem var(--serif);color:var(--violeta)}
+.fluxo strong{display:block}
+table{border-collapse:collapse;width:100%;margin-top:1rem}
+th,td{text-align:left;padding:.7rem .75rem;border-bottom:1px solid var(--linha);vertical-align:top}
+.rolar{overflow-x:auto}
+figure{margin:1.5rem 0}
+figure img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--linha)}
+figcaption{font-size:.9rem;color:var(--suave);margin-top:.5rem}
+.pendente{background:#fff3c4;color:#4d3500;padding:.05rem .4rem;border-radius:4px;font-weight:500}
+ul.lista{padding-left:1.2rem}
+footer{background:var(--noite);color:var(--lilas);padding:2.5rem 1.25rem;font-size:.95rem}
+footer a{color:var(--lua)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:640px){.hero::after{opacity:.35;width:150px}.nav b{width:100%}}
+</style>
+</head>
+<body>
+<a class="skip" href="#problema">Ir para o conteúdo</a>
+
+<header class="nav">
+  <b>Lumiê</b>
+  <nav aria-label="Principal" style="display:flex;gap:1.1rem;flex-wrap:wrap">
+    <a href="#problema">Problema</a><a href="#solucao">Solução</a><a href="#demo">Demonstração</a>
+    <a href="#docs">Documentação</a><a href="#tecnologias">Tecnologias</a><a href="#evolucao">Evolução</a><a href="#equipe">Equipe</a>
+  </nav>
+</header>
+
+<main>
+<!-- APRESENTAÇÃO -->
+<div class="hero" id="inicio">
+  <div class="wrap">
+    <h1>Lumiê</h1>
+    <p class="lema">Estude do seu jeito. Encontre o seu ritmo.</p>
+    <p>Plataforma web que apoia estudantes de graduação com dificuldade de foco e de organização, dividindo tarefas grandes em missões pequenas e mostrando o progresso de cada uma.</p>
+    <p class="meta">Projeto Interdisciplinar I · Gestão da Tecnologia da Informação · Instituto Federal do Paraná · 2026.02<br>
+    Identificador: GTI 20251PIN10030002</p>
+    <div class="btns">
+      <a class="btn prim" href="#demo">Ver demonstração</a>
+      <a class="btn" href="prototipo/index.html">Abrir o protótipo</a>
+      <a class="btn" href="#docs">Ler a documentação</a>
+      <!-- TODO: troque os links abaixo -->
+      <a class="btn" href="https://github.com/AlineStofela/Lumie">Código no GitHub</a>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMA -->
+<section id="problema">
+  <div class="wrap">
+    <h2>O problema</h2>
+    <div class="col">
+      <p>A vida universitária exige autonomia, prazos rígidos e a assimilação de muito conteúdo. Muitos estudantes têm dificuldade de começar uma atividade, manter o foco, criar uma rotina de estudo e permanecer em uma sessão sem interrupções.</p>
+      <p>O projeto começa pelos <strong>estudantes de graduação em Psicologia</strong>, que são o público-alvo inicial.</p>
+      <h3>O que a literatura aponta</h3>
+      <p>Revisões sobre estratégias de aprendizagem no ensino superior associam o rendimento acadêmico à capacidade de se autorregular: organizar o estudo, usar estratégias cognitivas e refletir sobre o próprio aprendizado. Na motivação, a literatura destaca autonomia, competência, pertencimento e valor da tarefa.</p>
+    </div>
+
+    <h3>O que encontramos em campo</h3>
+    <p class="suave">Questionário exploratório com <strong>9 estudantes</strong>. A amostra é pequena e serve como diagnóstico inicial, não como conclusão estatística.</p>
+    <div class="dados">
+      <div><strong>77,8%</strong>citaram falta de motivação ou de concentração como distração</div>
+      <div><strong>66,7%</strong>apontaram celular e redes sociais</div>
+      <div><strong>66,7%</strong>apontaram cansaço, sono e ruído ambiental</div>
+      <div><strong>3,78/5</strong>probabilidade média de adotar a plataforma</div>
+    </div>
+    <p class="suave">Outras médias (escala de 1 a 5): frequência de interrupção antes de concluir, 4,00; dificuldade autodeclarada para focar, 3,11.</p>
+    <h3>Fontes</h3>
+    <ul class="lista suave">
+      <li>Estratégias de estudo e de aprendizagem de estudantes de Ensino Superior (2023).</li>
+      <li>Motivação para o aprendizado em estudantes de graduação em Psicologia (2014).</li>
+      <li>Promoção de estratégias de aprendizagem em estudantes de Psicologia (2020).</li>
+      <li class="pendente">TODO: complete autores, periódico e link de cada referência.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SOLUÇÃO -->
+<section id="solucao">
+  <div class="wrap">
+    <h2>A solução</h2>
+    <div class="col">
+      <p><strong>Objetivo geral:</strong> promover estratégias de aprendizagem, autorregulação e motivação no ensino superior por meio de uma plataforma interativa.</p>
+      <p>A pergunta que guia o produto é “Qual é a minha próxima missão?”. Cada tarefa complexa vira etapas menores, viáveis e mensuráveis, o que reforça a sensação de competência do estudante.</p>
+    </div>
+
+    <h3>Como o estudante usa</h3>
+    <ol class="fluxo">
+      <li><strong>Escolher</strong>Seleciona com clareza o objetivo.</li>
+      <li><strong>Focar</strong>Faz a sessão sem distrações.</li>
+      <li><strong>Concluir</strong>Finaliza o bloco.</li>
+      <li><strong>Avançar</strong>Recebe feedback e vê a evolução.</li>
+    </ol>
+
+    <h3>Funcionalidades e estado atual</h3>
+    <p class="suave">Estados possíveis: Planejada, Em desenvolvimento e Implementada. <span class="pendente">Confira cada rótulo com o que o código realmente faz hoje.</span></p>
+    <div class="grid">
+      <div class="item"><h3>Missões <span class="tag t-dev">Em desenvolvimento</span></h3><p>Divide o conteúdo em etapas focadas.</p></div>
+      <div class="item"><h3>Modo Foco <span class="tag t-dev">Em desenvolvimento</span></h3><p>Ambiente para executar a tarefa sem distrações.</p></div>
+      <div class="item"><h3>Progresso Visual <span class="tag t-dev">Em desenvolvimento</span></h3><p>Mostra em gráfico o que foi concluído e o que falta.</p></div>
+      <div class="item"><h3>Feedback Contínuo <span class="tag t-plan">Planejada</span></h3><p>Espaço para autorreflexão sobre o aprendizado.</p></div>
+      <div class="item"><h3>Login e dados na nuvem <span class="tag t-plan">Planejada</span></h3><p>Perfis, missões e progresso guardados no Cloud Firestore.</p></div>
+    </div>
+
+    <h3>Limitações conhecidas</h3>
+    <ul class="lista">
+      <li>O público inicial é restrito a estudantes de Psicologia.</li>
+      <li>A amostra do diagnóstico tem 9 pessoas.</li>
+      <li>Os testes piloto com estudantes ainda não foram realizados.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- DEMONSTRAÇÃO -->
+<section id="demo">
+  <div class="wrap">
+    <h2>Demonstração</h2>
+    <p class="col">O protótipo funcional já tem a página inicial e a navegação. As demais telas estão sendo construídas.</p>
+    <figure>
+      <!-- TODO: salve o print em assets/imagens/tela-inicial.png -->
+      <img src="assets/imagens/tela-inicial.png" alt="Página inicial do Lumiê com o texto 'Estude do seu jeito. Encontre o seu ritmo.' e os botões Conheça o Lumiê e Entrar" width="1100" height="640">
+      <figcaption>Página inicial do protótipo, executando em ambiente local.</figcaption>
+    </figure>
+    <p><span class="pendente">TODO:</span> adicione prints do Modo Foco e das Missões, e um vídeo curto mostrando um fluxo completo. Se publicar o site, coloque o link aqui.</p>
+  </div>
+</section>
+
+<!-- DOCUMENTAÇÃO -->
+<section id="docs">
+  <div class="wrap">
+    <h2>Documentação</h2>
+    <p class="col">Os documentos ficam na pasta <code>docs/</code> do repositório. <span class="pendente">Troque cada “em breve” por um link quando o arquivo existir.</span></p>
+    <div class="rolar"><table>
+      <thead><tr><th>Documento</th><th>O que contém</th><th>Link</th></tr></thead>
+      <tbody>
+        <tr><td>Requisitos</td><td>Escopo, requisitos funcionais e não funcionais</td><td><a href="https://github.com/AlineStofela/Lumie/blob/main/docs/requisitos.md">docs/requisitos.md</a></td></tr>
+        <tr><td>Arquitetura</td><td>Diagrama da arquitetura e justificativas técnicas</td><td><a href="https://github.com/AlineStofela/Lumie/blob/main/docs/arquitetura.md">docs/arquitetura.md</a></td></tr>
+        <tr><td>Modelo de dados</td><td>Coleções do Firestore: usuários, missões, progresso</td><td><a href="https://github.com/AlineStofela/Lumie/blob/main/docs/modelo-de-dados.md">docs/modelo-de-dados.md</a></td></tr>
+        <tr><td>Instalação</td><td>Como executar o projeto localmente</td><td><a href="https://github.com/AlineStofela/Lumie/blob/main/docs/instalacao.md">docs/instalacao.md</a></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- TECNOLOGIAS -->
+<section id="tecnologias">
+  <div class="wrap">
+    <h2>Tecnologias</h2>
+    <div class="rolar"><table>
+      <thead><tr><th>Tecnologia</th><th>Finalidade</th><th>Situação</th></tr></thead>
+      <tbody>
+        <tr><td>HTML5</td><td>Estrutura semântica das páginas</td><td>Em uso</td></tr>
+        <tr><td>CSS3</td><td>Estilo e design responsivo</td><td>Em uso</td></tr>
+        <tr><td>JavaScript</td><td>Lógica e interatividade no navegador</td><td>Em uso</td></tr>
+        <tr><td>Firebase (Authentication e Cloud Firestore)</td><td>Login, missões e progresso na nuvem</td><td>Prevista</td></tr>
+        <tr><td>Git e GitHub</td><td>Versionamento do código</td><td class="pendente">Confirme</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- EVOLUÇÃO -->
+<section id="evolucao">
+  <div class="wrap">
+    <h2>Evolução e próximos passos</h2>
+    <ol class="fluxo">
+      <li><strong>Finalizar o protótipo</strong>Telas, navegação e fluxos principais.</li>
+      <li><strong>Implementar o banco de dados</strong>Cloud Firestore para autenticação, missões e progresso.</li>
+      <li><strong>Aplicar testes piloto</strong>Sessões práticas com estudantes de Psicologia.</li>
+      <li><strong>Analisar o feedback</strong>Reunir oportunidades de melhoria.</li>
+      <li><strong>Evoluir a plataforma</strong>Ajustar funcionalidades e publicar nova versão.</li>
+    </ol>
+    <h3>Ação de extensão</h3>
+    <p class="col">O projeto tem uma parceria inicial com estudantes de Psicologia do Centro Universitário UniBrasil. O ciclo é apresentar a proposta, deixar os estudantes experimentarem, ouvir percepções e barreiras, e então aprimorar a plataforma. Os resultados serão publicados aqui depois dos testes.</p>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe">
+  <div class="wrap">
+    <h2>Equipe</h2>
+    <div class="item" style="max-width:36rem">
+      <h3>Aline Isabeli Stofela</h3>
+      <p><span class="pendente">TODO:</span> descreva suas responsabilidades reais (pesquisa, design, programação etc.).</p>
+      <p><a href="https://github.com/AlineStofela">GitHub</a></p>
+    </div>
+    <p class="suave"><span class="pendente">TODO:</span> se houver orientador ou outros integrantes, inclua cada um com sua contribuição e com autorização para publicar nome e foto.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Lumiê · Projeto Interdisciplinar I · Gestão da Tecnologia da Informação · IFPR · 2026.02</p>
+    <p>Imagens, bibliotecas e fontes de terceiros: Google Fonts (Lora e Plus Jakarta Sans). <span class="pendente">Adicione outros créditos, se houver.</span></p>
+  </div>
+</footer>
+</body>
+</html>
