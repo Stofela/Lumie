@@ -7,9 +7,9 @@ Plataforma web que apoia estudantes de graduação com dificuldade de foco e org
 **Projeto Interdisciplinar I** · Gestão da Tecnologia da Informação · Instituto Federal do Paraná · 2026.02
 **Identificador:** GTI 20251PIN10030002 · **Autora:** Aline Isabeli Stofela
 
-- Página do projeto: https://alinestofela.github.io/Lumie/
-- Protótipo: `prototipo/index.html`
-- Documentação: pasta [`docs/`](docs/)
+- Página do projeto: https://SEU-USUARIO.github.io/SEU-REPOSITORIO/
+- Protótipo: `prototipo.html`
+- Documentação: pasta os arquivos `.md` na raiz do repositório
 
 ## Problema
 
@@ -29,22 +29,28 @@ A plataforma decompõe tarefas complexas em etapas viáveis: **escolher, focar, 
 
 <!-- TODO: confira os estados com o código atual -->
 
+## Equipe
+
+- Aline Isabeli Stofela <!-- TODO: descreva suas responsabilidades reais -->
+
 ## Tecnologias
 
 HTML5, CSS3 e JavaScript (em uso). Firebase Authentication e Cloud Firestore (previstos).
 
 ## Como executar
 
-Veja [`docs/instalacao.md`](docs/instalacao.md).
+Veja [`instalacao.md`](instalacao.md).
 
 ## Estrutura do repositório
 
 ```
 .
-├── index.html          # página pública do projeto
-├── prototipo/          # protótipo do Lumiê
-├── assets/imagens/     # prints e imagens
-├── docs/               # requisitos, arquitetura, modelo de dados, instalação
+├── index.html            # página pública do projeto
+├── prototipo.html        # protótipo do Lumiê
+├── estilo.css, links.js  # estilo e script da página
+├── logo-lumie.png, tela-inicial.jpg
+├── requisitos.md, arquitetura.md, modelo-de-dados.md,
+│   gestao-evolucao.md, instalacao.md
 ├── README.md
 └── LICENSE
 ```
